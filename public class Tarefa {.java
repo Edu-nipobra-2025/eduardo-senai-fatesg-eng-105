@@ -1,207 +1,104 @@
-public class Tarefa {
+public Tarefa(String descricao) {
     private String descricao;
     private boolean concluida;
     public Tarefa(String descricao) {
-        this.descricao = descricao;
-        this.concluida = false; // Por padrão, a tarefa não está concluída
+        this.concluida = false;
     }
-    // Métodos para acessar as propriedades
-    public String getDescricao() {
+    public String getDescricao () {
         return descricao;
     }
-    public boolean isConcluida() {
+    public boolean isConcluida () {
         return concluida;
     }
-    // Método para marcar a tarefa como concluída
-    public void marcarComoConcluida() {
+    public void marcarComoConcluida () {
         this.concluida = true;
     }
     @Override
-    public String toString() {
-        return (concluida ? &quot;[X] &quot; : &quot;[ ] &quot;) + descricao;
+    public String toString () {
+        return (concluida ? "[X]" : "[]") + descricao;
     }
 }
-
-import java.util.ArrayList;
+        import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class GerenciadorDeTarefas {
-    private List&lt;Tarefa&gt; tarefas;
+    private List<Tarefa>tarefas;
     private Scanner scanner;
 
     public GerenciadorDeTarefas() {
-        this.tarefas = new ArrayList&lt;&gt;();
+        this.tarefas = new ArrayList<>();
         this.scanner = new Scanner(System.in);
     }
-
-    public void iniciar() {
-        System.out.println(&quot;Bem-vindo ao Gerenciador de Tarefas!&quot;);
+    public void iniciar(){
+        System.out.prinln("Bem-vindo ao Gerenciador de Tarefas!");
         int opcao;
         do {
             exibirMenu();
             opcao = scanner.nextInt();
-            scanner.nextLine(); // Consome a quebra de linha
-
+            scanner.nextLine();
             switch (opcao) {
                 case 1:
                     adicionarTarefa();
-
                     break;
-                case 2:
-                    listarTarefas();
-                    break;
+                Case 2:
+                listarTarefas();
+                break;
                 case 3:
                     marcarTarefaComoConcluida();
-                    break;
                 case 4:
-                    System.out.println(&quot;Saindo...&quot;);
+                    System.out.println("Saindo...");
                     break;
-                default:
-                    System.out.println(&quot;Opção inválida. Tente novamente.&quot;);
+                default
+                    ;
+                    System.out.println("Opção inválida. Tente novamente.");
             }
-        } while (opcao != 4);
-    }
 
-    private void exibirMenu() {
-        System.out.println(&quot;\n--- MENU ---&quot;);
-        System.out.println(&quot;1. Adicionar nova tarefa&quot;);
-        System.out.println(&quot;2. Listar todas as tarefas&quot;);
-        System.out.println(&quot;3. Marcar tarefa como concluída&quot;);
-        System.out.println(&quot;4. Sair&quot;);
-        System.out.print(&quot;Escolha uma opção: &quot;);
-    }
+            } while (opcao !=4);
 
-    private void adicionarTarefa() {
+        }
+private void exibirMenu(){
+        System.out.println("/n--- MENU ---");
+    System.out.println("1. Adicionar nova tarefa");
+    System.out.println("2.Listar todas as tarefas");
+    System.out.println("3. Marcar tarefa como concluída");
+    System.out.println("4. Sair");
+    System.out.println("Escolha uma opção:");
+}
+private void adicionarTarefa(){
+    System.out.println("Digite a descrição da nova tarefa");
+   String descricao = scaner.nextLine();
+   Tarefa novaTarefa = new Tarefa(descricao);
+   tarefas.add(novaTarefa);
+   System.out.println("Tarefa adicionada com sucesso!");
 
-        System.out.print(&quot;Digite a descrição da nova tarefa: &quot;);
-        String descricao = scanner.nextLine();
-        Tarefa novaTarefa = new Tarefa(descricao);
-        tarefas.add(novaTarefa);
-        System.out.println(&quot;Tarefa adicionada com sucesso!&quot;);
-    }
-
-    private void listarTarefas() {
-        if (tarefas.isEmpty()) {
-            System.out.println(&quot;Nenhuma tarefa para listar.&quot;);
+}
+private void listarTarefas(){
+        if (tarefas.isEmpty()){
+            System.out.println("Nenhuma tarefa para listar.");
             return;
         }
-        System.out.println(&quot;\n--- LISTA DE TAREFAS ---&quot;);
-        for (int i = 0; i &lt; tarefas.size(); i++) {
-            System.out.println((i + 1) + &quot;. &quot; + tarefas.get(i));
-        }
+        System.out.println("\n--- LISTA DE TAREFAS ---");
+        for (int i = 0; i < tarefas.size(); i ++);
+        System.out.println ((i+1) + "." + tarefas.get(i));
+}
+}
+private void marcarTarefaComoConcluida(){
+    listarTarefas();
+    if (tarefas.isEmpty()){
+        return;
     }
-
-    private void marcarTarefaComoConcluida() {
-        listarTarefas();
-        if (tarefas.isEmpty()) {
-            return;
-        }
-        System.out.print(&quot;Digite o número da tarefa que deseja marcar como concluída: &quot;);
-        int numeroTarefa = scanner.nextInt();
-        if (numeroTarefa &gt; 0 &amp;&amp; numeroTarefa &lt;= tarefas.size()) {
-
-            tarefas.get(numeroTarefa - 1).marcarComoConcluida();
-            System.out.println(&quot;Tarefa marcada como concluída!&quot;);
-        } else {
-            System.out.println(&quot;Número de tarefa inválido.&quot;);
-        }
-    }
-
-    public static void main(String[] args) {
-        GerenciadorDeTarefas app = new GerenciadorDeTarefas();
-        app.iniciar();
+    System.out.print("Digite o número da tarefa que deseja marcar como conluída:");
+    int numeroTarefa = scanner.nextInt();
+    if (numeroTarefa > 0 && numeroTarefa <= tarefas.size()) {
+        tarefas.get(numeroTarefa - 1).marcarComoConcluida;
+        System.out.println("Tarefa marcada como concluída!");
+    }else{
+        System.out.println("Número de tarefa inválido");
     }
 }
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-public class GerenciadorDeTarefas {
-    private List&lt;Tarefa&gt; tarefas;
-    private Scanner scanner;
-
-    public GerenciadorDeTarefas() {
-        this.tarefas = new ArrayList&lt;&gt;();
-        this.scanner = new Scanner(System.in);
-    }
-
-    public void iniciar() {
-        System.out.println(&quot;Bem-vindo ao Gerenciador de Tarefas!&quot;);
-        int opcao;
-        do {
-            exibirMenu();
-            opcao = scanner.nextInt();
-            scanner.nextLine(); // Consome a quebra de linha
-
-            switch (opcao) {
-                case 1:
-                    adicionarTarefa();
-
-                    break;
-                case 2:
-                    listarTarefas();
-                    break;
-                case 3:
-                    marcarTarefaComoConcluida();
-                    break;
-                case 4:
-                    System.out.println(&quot;Saindo...&quot;);
-                    break;
-                default:
-                    System.out.println(&quot;Opção inválida. Tente novamente.&quot;);
-            }
-        } while (opcao != 4);
-    }
-
-    private void exibirMenu() {
-        System.out.println(&quot;\n--- MENU ---&quot;);
-        System.out.println(&quot;1. Adicionar nova tarefa&quot;);
-        System.out.println(&quot;2. Listar todas as tarefas&quot;);
-        System.out.println(&quot;3. Marcar tarefa como concluída&quot;);
-        System.out.println(&quot;4. Sair&quot;);
-        System.out.print(&quot;Escolha uma opção: &quot;);
-    }
-
-    private void adicionarTarefa() {
-
-        System.out.print(&quot;Digite a descrição da nova tarefa: &quot;);
-        String descricao = scanner.nextLine();
-        Tarefa novaTarefa = new Tarefa(descricao);
-        tarefas.add(novaTarefa);
-        System.out.println(&quot;Tarefa adicionada com sucesso!&quot;);
-    }
-
-    private void listarTarefas() {
-        if (tarefas.isEmpty()) {
-            System.out.println(&quot;Nenhuma tarefa para listar.&quot;);
-            return;
-        }
-        System.out.println(&quot;\n--- LISTA DE TAREFAS ---&quot;);
-        for (int i = 0; i &lt; tarefas.size(); i++) {
-            System.out.println((i + 1) + &quot;. &quot; + tarefas.get(i));
-        }
-    }
-
-    private void marcarTarefaComoConcluida() {
-        listarTarefas();
-        if (tarefas.isEmpty()) {
-            return;
-        }
-        System.out.print(&quot;Digite o número da tarefa que deseja marcar como concluída: &quot;);
-        int numeroTarefa = scanner.nextInt();
-        if (numeroTarefa &gt; 0 &amp;&amp; numeroTarefa &lt;= tarefas.size()) {
-
-            tarefas.get(numeroTarefa - 1).marcarComoConcluida();
-            System.out.println(&quot;Tarefa marcada como concluída!&quot;);
-        } else {
-            System.out.println(&quot;Número de tarefa inválido.&quot;);
-        }
-    }
-
-    public static void main(String[] args) {
-        GerenciadorDeTarefas app = new GerenciadorDeTarefas();
-        app.iniciar();
-    }
+public static void main (String[] args){
+    GerenciadorDeTarefas app = new GerenciadorDeTarefas();
+    app.iniciar();
+}
 }
